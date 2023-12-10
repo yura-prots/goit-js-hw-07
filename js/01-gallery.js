@@ -1,10 +1,16 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-console.log(galleryItems);
+// console.log(galleryItems);
 
 const galleryEl = document.querySelector(".gallery");
 galleryEl.insertAdjacentHTML("afterbegin", galleryMarkupCreator(galleryItems));
+
+galleryEl.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  console.dir(e.target);
+});
 
 function galleryMarkupCreator(images) {
   return images
@@ -14,7 +20,7 @@ function galleryMarkupCreator(images) {
                     <img
                         class="gallery__image"
                         src="${image.preview}"
-                        data-source="large-image.jpg"
+                        data-source="${image.original}"
                         alt="${image.description}"
                     />
                 </a>
