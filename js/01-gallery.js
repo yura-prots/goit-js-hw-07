@@ -6,11 +6,7 @@ import { galleryItems } from "./gallery-items.js";
 const galleryEl = document.querySelector(".gallery");
 galleryEl.insertAdjacentHTML("afterbegin", galleryMarkupCreator(galleryItems));
 
-galleryEl.addEventListener("click", (e) => {
-  e.preventDefault();
-
-  console.dir(e.target);
-});
+galleryEl.addEventListener("click", clickHandler);
 
 function galleryMarkupCreator(images) {
   return images
@@ -27,4 +23,19 @@ function galleryMarkupCreator(images) {
             </li>`;
     })
     .join("");
+}
+
+function clickHandler(e) {
+  e.preventDefault();
+
+  //   console.dir(e.target);
+  if (e.target.nodeName !== "IMG") {
+    return;
+  }
+
+  const instance = basicLightbox.create(`
+    <img src="${e.target.dataset.source}" width="800" height="600">
+`);
+
+  instance.show();
 }
