@@ -1,11 +1,8 @@
 import { galleryItems } from "./gallery-items.js";
-// Change code below this line
-
-// console.log(galleryItems);
 
 const galleryEl = document.querySelector(".gallery");
-galleryEl.insertAdjacentHTML("afterbegin", galleryMarkupCreator(galleryItems));
 
+galleryEl.insertAdjacentHTML("afterbegin", galleryMarkupCreator(galleryItems));
 galleryEl.addEventListener("click", clickHandler);
 
 function galleryMarkupCreator(images) {
@@ -28,7 +25,6 @@ function galleryMarkupCreator(images) {
 function clickHandler(e) {
   e.preventDefault();
 
-  //   console.dir(e.target);
   if (e.target.nodeName !== "IMG") {
     return;
   }
@@ -36,6 +32,9 @@ function clickHandler(e) {
   const instance = basicLightbox.create(`
     <img src="${e.target.dataset.source}" width="800" height="600">
 `);
-
   instance.show();
+
+  galleryEl.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") instance.close();
+  });
 }
