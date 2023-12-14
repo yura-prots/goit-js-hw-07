@@ -19,5 +19,5 @@ function galleryMarkupCreator(images) {
 const lightbox = new SimpleLightbox(".gallery a", {
   captionsData: "alt",
   captionPosition: "bottom",
-  captionDelay: 250,
+  captionDelay: "250ms",
 });
